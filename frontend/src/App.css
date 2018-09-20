@@ -1,0 +1,60 @@
+html{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient( 30deg,  #2E3192 0%,   #1bffff 100%);
+  min-height: 100%;
+  color: var(--black);
+  user-select: none;
+}
+
+.App {
+  text-align: center;
+  padding-bottom: 32px;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+:root{
+  --black: rgb(36, 36, 36);
+}
+
+button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  margin: 2px;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover{
+  background-color: rgb(164, 242, 245);
+}
+
+button:active{
+  background-color: rgb(245, 164, 241);
+}
