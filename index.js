@@ -26,7 +26,7 @@ app.use(cors());
 
 const mongoSetup = (callback) => {
 
-  const uri = `mongodb://localhost:27017`;
+  const uri = process.env.MONGODB_URI ||`mongodb://localhost:27017`;
 
   //Connect to mongo cloud
   MongoClient.connect(uri, {useNewUrlParser: true}, function (err, client) {
