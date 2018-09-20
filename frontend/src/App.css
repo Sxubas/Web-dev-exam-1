@@ -58,3 +58,10 @@ button:hover{
 button:active{
   background-color: rgb(245, 164, 241);
 }
+
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
