@@ -14,15 +14,23 @@ html{
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 2px #1294cf solid;
-  border-top: 0;
+  border: none;
+  border-bottom: 2px #1294cf solid; 
+  border-left: 1px #1294cf solid;
+  border-right: 1px #1294cf solid;
   cursor: pointer;
   background-color: whitesmoke;
   transition: all 0.2s ease-in-out;
 }
 
 .left-text-button{
+  border-left: 2px #1294cf solid;
   border-radius: 0 0 0 4px;
+}
+
+.right-text-button{
+  border-right: 2px #1294cf solid;
+  border-radius: 0 0 4px 0;
 }
 
 .text-area-button:hover{
@@ -103,4 +111,11 @@ textarea{
 .error-message{
   color: rgb(199, 3, 3);
   font-size: 0.9rem;
+}
+
+.aux-buttons-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
 }

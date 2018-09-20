@@ -40,7 +40,7 @@ const mongoSetup = (callback) => {
 //Setting up endpoints
 const expressSetup = (mongoClient) => {
 
-  const db = mongoClient.db('heroku_kr26nnxp');
+  const db = mongoClient.db('heroku_kr26nnxp'); //Todo bien
 
   //CRUD Users
   app.get('/users', (req, res) => {
