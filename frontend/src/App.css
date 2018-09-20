@@ -1,67 +1,106 @@
 html{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient( 30deg,  #2E3192 0%,   #1bffff 100%);
+  justify-content: flex-start;
+  align-items: flex-start;
+  /*background: linear-gradient( 30deg,  #2E3192 0%,   #1bffff 100%);*/
   min-height: 100%;
   color: var(--black);
   user-select: none;
 }
 
-.App {
-  text-align: center;
-  padding-bottom: 32px;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-:root{
-  --black: rgb(36, 36, 36);
-}
-
-button{
+.text-area-button{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: none;
+  border: 2px #1294cf solid;
+  border-top: 0;
   cursor: pointer;
-  margin: 2px;
-  padding: 6px;
-  border-radius: 6px;
-  transition: all 0.3s ease-in-out;
+  background-color: whitesmoke;
+  transition: all 0.2s ease-in-out;
 }
 
-button:hover{
+.left-text-button{
+  border-radius: 0 0 0 4px;
+}
+
+.text-area-button:hover{
   background-color: rgb(164, 242, 245);
 }
 
-button:active{
-  background-color: rgb(245, 164, 241);
+.text-area-button:active{
+  background-color: rgb(164, 169, 245);
+}
+
+.app{
+  height: 100%;
+  width: 100%;
 }
 
 .container{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: calc(100vh - 80px);
+  margin: 0 12px;
+}
+
+h1{
+  width: calc(100% - 24px);
+  border-bottom: 2px #1294cf solid;
+  margin: 8px 12px;
+  margin-bottom: 0;
+}
+
+h2{
+  margin: 4px 0;
+  font-size: 1.4rem;
+}
+
+textarea{
+  resize: none;
+  height: 60vh;
+  width: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  border-top: 2px #1294cf solid;
+  border-bottom: 2px #1294cf solid;
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif
+}
+
+.left-container{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.right-container{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+  max-width: 56vw;
+}
+
+.visualization{
+  height: 100%;
+  width: 100%;
+
+}
+
+.vertical-hr{
+  background-color: #1294cf;
+  width: 2px;
+  height: 100%;
+}
+
+.error-message{
+  color: rgb(199, 3, 3);
+  font-size: 0.9rem;
 }
