@@ -8,21 +8,30 @@ const Collections = {};
 
 //Retrieves all words from a users collection, ordered by time added to the collection
 Collections.getAllwords = (req, res, db) => {
-  db.collection('testColl').find((err, r) => {
-    if (err) res.send(err);
-    else if (!r) res.send([]);
+  //Retrieve by most recent first
+  db.collection('visualizations').find({}).sort({date: -1}).toArray((err, r) =>{
+    if (err) {
+      res.status(500).send(err);
+    }
+    else if(!r) res.send([]);
     else res.send(r);
   });
 };
 
-Collections.addWord = (req, res, db) => {
-  db.collection('testColl').insertOne( req.body, { returnOriginal: false }, (err, r) => {
-    if (err) {
-      res.status(500).send(err);
+Collections.addWord = (req, res, db) => { 
+
+  let vis = req.body;
+  vis.date = Date.now();
+
+  db.collection('visualizations').insertMany( [req.body], { returnOriginal: false }, (err, r) => {
+    if(r){
+      res.send(r);
     }
-    else res.send(r.value);
+    else{
+      res.status(500).send({ 'errorMessage': err.message});
+    }
   });
-}
+};
 
 
 Collections.modifyWord = (req, res, db) => {

@@ -16,7 +16,8 @@ const path = require('path');
 const app = express();
 
 app.use(bodyParser.json({
-  type: 'application/json'
+  type: 'application/json',
+  limit: '500KB'
 }));
 /* app.use(bodyParser.raw({
   type: 'multipart/form-data',
@@ -60,11 +61,11 @@ const expressSetup = (mongoClient) => {
   });
 
   //CRUD Collections
-  app.get('/collections', (req, res) => {
+  app.get('/visualizations', (req, res) => {
     Collections.getAllwords(req, res, db);
   });
 
-  app.post('/collections', (req, res) => {
+  app.post('/visualizations', (req, res) => {
     Collections.addWord(req, res, db);
   });
 

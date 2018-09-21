@@ -1,0 +1,17 @@
+
+h2{
+  margin: 4px 0;
+  font-size: 1.4rem;
+}
+
+.right-container{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 56vw;
+}
+
+.visualization{
+}
