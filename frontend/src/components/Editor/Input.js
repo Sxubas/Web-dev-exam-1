@@ -39,7 +39,7 @@ class Input extends Component {
 
         <div className='aux-buttons-container'>
           <button className='text-area-button left-text-button' onClick={this.props.prettify}>Prettify</button>
-          <button className='text-area-button' onClick={this.props.restoreVisualization}>Clear</button>
+          <button className='text-area-button' onClick={this.props.restoreVisualization}>Restore spec</button>
           <button className='text-area-button right-text-button' onClick={() => this.setState({ submittingName: !this.state.submittingName })}>
             {this.state.submittingName ? 'Cancel publishing' : 'Publish visualization'}
           </button>

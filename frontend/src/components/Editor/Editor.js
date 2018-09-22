@@ -6,8 +6,8 @@ import Visualization from '../Visualization';
 
 class Editor extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     const defaultSpec = {
       '$schema': 'https://vega.github.io/schema/vega-lite/v2.json',
       'description': 'A simple bar chart with embedded data.',
@@ -40,6 +40,16 @@ class Editor extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.prettify = this.prettify.bind(this);
     this.updateCSV = this.updateCSV.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.exploredVisualization) {
+      this.setState({
+        spec: this.props.exploredVisualization.spec,
+        data: this.props.exploredVisualization.data,
+        visText: JSON.stringify(this.props.exploredVisualization.spec, null, 2)
+      });
+    }
   }
 
   prettify() {
@@ -113,16 +123,32 @@ class Editor extends Component {
   }
 
   restoreVisualization() {
+    //Restore to the currently editing visualization
     if (this.props.exploredVisualization) {
       this.setState({
         visText: JSON.stringify(this.props.exploredVisualization.spec, null, 2),
         spec: this.props.exploredVisualization.spec
       });
     }
+    //Restore to the default spec
     else {
+
+      const defaultSpec = {
+        '$schema': 'https://vega.github.io/schema/vega-lite/v2.json',
+        'description': 'A simple bar chart with embedded data.',
+        'data': {
+          'name': 'myData'
+        },
+        'mark': 'bar',
+        'encoding': {
+          'y': { 'field': 'a', 'type': 'ordinal' },
+          'x': { 'field': 'b', 'type': 'quantitative' }
+        }
+      };
+
       this.setState({
-        visText: '{"$schema": "https://vega.github.io/schema/vega-lite/v2.json"}',
-        spec: { '$schema': 'https://vega.github.io/schema/vega-lite/v2.json' }
+        spec: defaultSpec,
+        visText: JSON.stringify(defaultSpec, null, 2)
       });
     }
   }

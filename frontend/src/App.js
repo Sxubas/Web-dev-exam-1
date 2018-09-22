@@ -13,6 +13,16 @@ export default class App extends Component {
     };
   }
 
+  buildVisualization(spec, data){
+    let vis = {};
+    vis.spec = spec;
+    vis.data = data;
+    this.setState({
+      exploredVisualization: vis,
+      onEditor: true
+    });
+  }
+
   render() {
     return (
       <div className='app'>
@@ -25,8 +35,11 @@ export default class App extends Component {
         </div>
 
         {this.state.onEditor ?
-          <Editor explored={this.state.exploredVisualization} changeView={() => this.setState({ onEditor: false })} /> :
-          <Explorer changeView={() => this.setState({ onEditor: true })} />
+          <Editor exploredVisualization={this.state.exploredVisualization} changeView={() => this.setState({ onEditor: false })} /> :
+          <Explorer 
+            changeView={() => this.setState({ onEditor: true })} 
+            exploreVisualization={(spec, data) => this.buildVisualization(spec, data)}
+          />
         }
       </div>
     );

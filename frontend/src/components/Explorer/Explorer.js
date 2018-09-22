@@ -33,6 +33,7 @@ class Explorer extends Component {
             rating={element.rating}
             votes={element.votes}
             _id={element._id}
+            exploreVisualization={this.props.exploreVisualization}
           />
         )}
       </div>
@@ -41,7 +42,8 @@ class Explorer extends Component {
 }
 
 Explorer.propTypes = {
-  changeView: PropTypes.func
-}
+  changeView: PropTypes.func,
+  exploreVisualization: PropTypes.func
+};
 
 export default Explorer;

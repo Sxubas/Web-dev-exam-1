@@ -72,10 +72,16 @@ class VisListItem extends Component {
     return (
       <div>
         <div className='list-item-header'>
-          <h3>{this.props.name}</h3> 
-          <span> {this.displayRating()} ⭐ <button className='explore-button' onClick={() => this.setState({ rating: !this.state.rating })}>
-            {this.state.rating ? 'Collapse rating form' : 'Rate this visualization'}
-          </button></span>
+          <h3>{this.props.name}</h3>
+          <span>
+            {this.displayRating()} ⭐
+            <button className='explore-button' onClick={() => this.setState({ rating: !this.state.rating })}>
+              {this.state.rating ? 'Collapse rating form' : 'Rate this visualization'}
+            </button>
+            <button className='explore-button' onClick={() => this.props.exploreVisualization(this.props.spec, this.props.data)}>
+              Edit this visualization
+            </button>
+          </span>
         </div>
         {this.state.rating ?
           <div className='rating-container'>
@@ -120,7 +126,8 @@ VisListItem.propTypes = {
   index: pt.number,
   rating: pt.number,
   _id: pt.string,
-  votes: pt.number
+  votes: pt.number,
+  exploreVisualization: pt.func
 };
 
 export default VisListItem;
