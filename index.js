@@ -1,6 +1,5 @@
 'use strict';
 require('dotenv').config(); //Set environment variables from .env file
-const Users = require('./services/Users');
 const Collections = require('./services/Collections');
 const MongoClient = require('mongodb');
 const express = require('express');
@@ -43,23 +42,6 @@ const expressSetup = (mongoClient) => {
 
   const db = mongoClient.db('heroku_kr26nnxp'); //Todo bien
 
-  //CRUD Users
-  app.get('/users', (req, res) => {
-    Users.login(req, res, db);
-  });
-
-  app.post('/users', (req, res) => {
-    Users.signup(req, res, db);
-  });
-
-  app.put('/users', (req, res) => {
-    Users.update(req, res, db);
-  });
-
-  app.delete('/users', (req, res) => {
-    Users.delete(req, res, db);
-  });
-
   //CRUD Collections
   app.get('/visualizations', (req, res) => {
     Collections.getAllwords(req, res, db);
@@ -71,10 +53,6 @@ const expressSetup = (mongoClient) => {
 
   app.put('/visualizations', (req, res) => {
     Collections.modifyWord(req, res, db);
-  });
-
-  app.delete('/collections', (req, res) => {
-    Collections.deleteWord(req, res, db);
   });
 
   //Serving react resources
