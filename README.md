@@ -10,7 +10,7 @@ Web application for Web Development class (Fall 2018), first exam. It is a simpl
 It is made with React for the frontend and Express.js with MongoDB for the backend. The React project is located in the `./frontend` folder. The final app has been deployed to heroku: http://stark-sea-16874.herokuapp.com/ for public usage.
 
 ## How to run it
-To run this project, you need to have npm or yarn installed. In this case, we will detail instructions for npm:
+To run this project locally, you need to have a running mongoDB on the default mongo port (27017) and npm or yarn installed. In this case, we will detail instructions for npm:
 
 
  - Clone the project from the github repository:  
