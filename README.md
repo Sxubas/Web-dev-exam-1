@@ -1,9 +1,13 @@
 # Web-dev-exam-1
-Web application for Web Development class (Fall 2018)
+Web application for Web Development class (Fall 2018), first exam. It is a simple visualization of a vega-embed spec with custom data passed by csv. It also allows people to share their visualizations with custom data, and rate other visualizations. These are some of the main features:
 
-//Insert descripction//
+- CSV parsing to use in vega-embed data
+- Mostly responsive vega visualization (does not use fixed width)
+- Restore spec button. Returns the spec to the default spec if no visualization has been chosen to edit or returns to the last selected edited visualization
+- Visualization uploads include name
+- Real time error reporting when parsing spec 
 
-It is made with React for the frontend and Express.js with MongoDB for the backend. The React project is located in the `./frontend` folder. The final app has been deployed to heroku: http://duozi.herokuapp.com/ for public usage.
+It is made with React for the frontend and Express.js with MongoDB for the backend. The React project is located in the `./frontend` folder. The final app has been deployed to heroku: http://stark-sea-16874.herokuapp.com/ for public usage.
 
 ## How to run it
 To run this project, you need to have npm or yarn installed. In this case, we will detail instructions for npm:

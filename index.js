@@ -1,6 +1,6 @@
 'use strict';
 require('dotenv').config(); //Set environment variables from .env file
-const Collections = require('./services/Collections');
+const Visualizations = require('./services/Visualizations');
 const MongoClient = require('mongodb');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -18,18 +18,15 @@ app.use(bodyParser.json({
   type: 'application/json',
   limit: '500KB'
 }));
-/* app.use(bodyParser.raw({
-  type: 'multipart/form-data',
-  limit: '20mb'
-})); */
+
 app.use(cors());
 
 const mongoSetup = (callback) => {
 
-  const uri = process.env.MONGODB_URI ||`mongodb://localhost:27017`;
+  const uri = process.env.MONGODB_URI || `mongodb://localhost:27017`;
 
   //Connect to mongo cloud
-  MongoClient.connect(uri, {useNewUrlParser: true}, function (err, client) {
+  MongoClient.connect(uri, { useNewUrlParser: true }, function (err, client) {
     if (err) throw err;
     else console.log('Successfully connected to mongoDB');
     //Afterwards instruction, client stands for a mongoClient connected to mongoAtlas instance
@@ -44,15 +41,15 @@ const expressSetup = (mongoClient) => {
 
   //CRUD Collections
   app.get('/visualizations', (req, res) => {
-    Collections.getAllwords(req, res, db);
+    Visualizations.getVisualizations(req, res, db);
   });
 
   app.post('/visualizations', (req, res) => {
-    Collections.addWord(req, res, db);
+    Visualizations.addVisualization(req, res, db);
   });
 
   app.put('/visualizations', (req, res) => {
-    Collections.modifyWord(req, res, db);
+    Visualizations.rateVisualization(req, res, db);
   });
 
   //Serving react resources
@@ -60,7 +57,7 @@ const expressSetup = (mongoClient) => {
 
   //For any request that does not match any other endpoint, return app
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/frontend/build/index.html'));
+    res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
   });
 
   startServer();

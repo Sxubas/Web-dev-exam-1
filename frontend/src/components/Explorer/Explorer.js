@@ -21,7 +21,6 @@ class Explorer extends Component {
       <div className='explore-container'>
         <h2>Visualization explorer</h2>
         <div>
-          --------Filters--------
         </div>
         {this.state.visualizations.map((element, index) =>
           <VisListItem

@@ -10,17 +10,19 @@ class Visualization extends Component {
     //Do not update if there is a known error, as this would cause infinite setState calls
     if (this.props.specError) return;
 
-    const embed_opt = {
-      'mode': 'vega-lite',
-      height: window.innerHeight - 80 /*this.visContainer.clientHeight*/,
-      width: Math.max(this.visContainer.clientWidth - 44, (window.innerWidth - 44) * 0.5)
-    };
+    if (this.visContainer) {
+      const embed_opt = {
+        'mode': 'vega-lite',
+        height: window.innerHeight - 80 /*this.visContainer.clientHeight*/,
+        width: Math.max(this.visContainer.clientWidth - 44, (window.innerWidth - 44) * 0.5)
+      };
 
-    vegaEmbed(this.div, this.props.spec, embed_opt)
-      .catch(error => this.props.onSpecError(error))
-      .then((res) => {
-        res.view.insert('myData', this.props.data).run();
-      });
+      vegaEmbed(this.div, this.props.spec, embed_opt)
+        .catch(error => this.props.onSpecError(error))
+        .then((res) => {
+          res.view.insert('myData', this.props.data).run();
+        });
+    }
 
   }
 
