@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Visualization from './../Visualization';
+import VisListItem from './VisListItem';
 import './Explorer.css';
 
 class Explorer extends Component {
@@ -24,13 +24,16 @@ class Explorer extends Component {
           --------Filters--------
         </div>
         {this.state.visualizations.map((element, index) =>
-          <div key={'' + element.name + element.date}>
-            <h3>{element.name} - {element.rating} ⭐</h3>
-            <Visualization
-              spec={element.spec}
-              data={element.data}
-              index={index} />
-          </div>
+          <VisListItem
+            key={element._id}
+            index={index}
+            data={element.data}
+            spec={element.spec}
+            name={element.name}
+            rating={element.rating}
+            votes={element.votes}
+            _id={element._id}
+          />
         )}
       </div>
     );

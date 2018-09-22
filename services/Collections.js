@@ -9,33 +9,60 @@ const Collections = {};
 //Retrieves all words from a users collection, ordered by time added to the collection
 Collections.getAllwords = (req, res, db) => {
   //Retrieve by most recent first
-  db.collection('visualizations').find({}).sort({date: -1}).toArray((err, r) =>{
+  db.collection('visualizations').find({}).sort({ date: -1 }).toArray((err, r) => {
     if (err) {
       res.status(500).send(err);
     }
-    else if(!r) res.send([]);
+    else if (!r) res.send([]);
     else res.send(r);
   });
 };
 
-Collections.addWord = (req, res, db) => { 
+Collections.addWord = (req, res, db) => {
 
   let vis = req.body;
   vis.date = Date.now();
 
-  db.collection('visualizations').insertMany( [req.body], { returnOriginal: false }, (err, r) => {
-    if(r){
+  db.collection('visualizations').insertMany([req.body], { returnOriginal: false }, (err, r) => {
+    if (r) {
       res.send(r);
     }
-    else{
-      res.status(500).send({ 'errorMessage': err.message});
+    else {
+      res.status(500).send({ 'errorMessage': err.message });
     }
   });
 };
 
 
 Collections.modifyWord = (req, res, db) => {
-  db.collection('collections').findOne({ 'email': req.body.email, 'characters._id': new ObjectID(req.body._id) }, (err, r) => {
+
+  db.collection('visualizations').findOneAndUpdate({ _id: new ObjectID(req.body.id) },
+    {
+      $inc: {
+        rating: req.body.rating,
+        votes: 1
+      },
+      $push: {
+        voters:{
+          name: req.body.name,
+          rate: req.body.rating
+        }
+      }
+    }
+    , {
+      returnOriginal: false
+    },
+    (err, r) => {
+      if (err) res.status(500).send({ errorMessage: err.message });
+      else {
+        const rating = r.value.rating;
+        const votes = r.value.votes;
+        const avg = rating/votes;
+        res.send({rating: avg});
+      }
+    });
+
+  /* db.collection('collections').findOne({ 'email': req.body.email, 'characters._id': new ObjectID(req.body._id) }, (err, r) => {
     if (err) res.status(500).send(err);
     else if (!r) {
       res.status(404);
@@ -55,7 +82,7 @@ Collections.modifyWord = (req, res, db) => {
         else res.send(r2.value);
       });
     }
-  });
+  }); */
 };
 
 Collections.deleteWord = (req, res, db) => {

@@ -1,0 +1,30 @@
+.list-item-header{
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rating-container{
+  display: flex;
+  flex: 1;
+  flex-direction: row-reverse;
+}
+
+.successful-rating-message{
+  color: rgb(14, 233, 25);
+  font-size: 0.8rem;  
+}
+
+.error-rating-message{
+  color: rgb(199, 3, 3);
+  font-size: 0.8rem;
+}
+
+.rating-form-name-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

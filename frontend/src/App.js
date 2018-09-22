@@ -19,7 +19,9 @@ export default class App extends Component {
 
         <div className='banner-container'>
           <h1>Minimalistic Vega Visualization</h1>
-          <button onClick={() => this.setState({ onEditor: !this.state.onEditor })} className='explore-button'>Explore more visualizations</button>
+          <button onClick={() => this.setState({ onEditor: !this.state.onEditor })} className='explore-button'>
+            {this.state.onEditor ? 'Explore more visualizations' : 'Return to editing visualizations'}
+          </button>
         </div>
 
         {this.state.onEditor ?
